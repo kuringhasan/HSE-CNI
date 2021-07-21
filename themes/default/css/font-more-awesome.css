@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {
+    font-family: 'FontMoreAwesome';
+    src: url('fonts/FontMoreAwesome.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+.fa-sapi:before {
+    font-family: FontMoreAwesome;
+    content: "A";
+	font-size: 1.2em;
+}
+.fa-head-cow:before {
+    font-family: FontMoreAwesome;
+    content: "C";
+	font-size: 1.4em;
+}
+
+
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

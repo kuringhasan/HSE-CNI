@@ -1,0 +1,53 @@
+body{
+  font-family:Tahoma; 
+  font-size: 12px;
+}
+#tbl_view{
+  border-collapse:collapse;
+  border:#000000;
+  
+}
+#tbl_view td {
+	font-family: Tahoma,Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding:2px 2px 2px 2px;
+}
+
+#tbl_view th {
+	font-family: Tahoma,Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding:2px 2px 2px 2px;
+}
+.header {
+	background-color:#CCCCCC;
+	color: #000000;
+	font : bold 10px Tahoma; 
+	height:20px;
+}
+
+
+.tbl
+{
+	width:	90%;
+    border-collapse:collapse;
+}
+
+.tbl th
+{
+	text-align:	center;
+    border-top:	solid 1px #262626;
+    padding: 5px 5px 5px 5px;
+	
+}
+
+.tbl td
+{
+	text-align:	left;
+    padding: 3px 3px 3px 3px;
+    border:	solid 1px #262626;
+    
+}
+
+
+
+

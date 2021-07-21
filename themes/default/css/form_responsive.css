@@ -1,0 +1,128 @@
+
+.responsive-form{
+	font-family:Verdana,Arial,Sans-Serif;
+	font-size:13px;
+	display:inline-block;
+	
+}
+.responsive-form .label{
+	display:inline-block;
+	width:150px;
+	float:left;
+	padding-top:2px;
+	padding-right:5px;
+	text-align:left;
+	color:#000;
+	font-size:12px;
+	margin-top:5px;
+	/*border:1px solid #F00;*/
+
+}
+.responsive-form  .input{
+	float:left;
+	font-size:13px;
+	font-family:Verdana,Arial,Sans-Serif;
+	border-radius: 2;
+	border:1px solid #d2d6de;
+	padding:2px 4px 2px 4px;
+	margin-bottom:2px;
+}
+.responsive-form  .input:not(select) {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.responsive-form  .input:focus,
+.responsive-form  .input:active {
+  border-color: #3c8dbc;
+  box-shadow: none;
+}
+.responsive-form  select option{
+	padding-left:5px;
+	float:left;
+	font-size:13px;
+	font-family:Verdana,Arial,Sans-Serif;
+	line-height:17px;
+	height:17px;
+}
+.responsive-form .row-form{
+	float:left;
+	display:inline-block;
+	width:100%;
+	margin-bottom:6px;
+	
+}
+.button{
+	float:left;
+	
+}
+.head-title{
+	 width:100%;
+	 text-align:center;
+	 margin:5px 0px 10px 0px;
+	 border-bottom:1px #999 solid;
+}
+
+.error{
+	border:1px solid #F99;
+	background-color:#FFC;
+}
+.lbl_error{
+	color:#F00;
+	padding-left:5px;
+}
+.input{
+	font-size:13px;
+	font-family:Verdana,Arial,Sans-Serif;
+	border-radius: 2;
+	border:1px solid #d2d6de;
+	padding:2px 4px 2px 4px;
+	margin-bottom:2px;
+}
+.input:not(select) {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.input:focus,
+.input:active {
+  border-color: #3c8dbc;
+  box-shadow: none;
+}
+@media screen and (max-width: 768px)  {
+  
+}
+@media screen and (max-width: 500px) {
+	.responsive-form .label{
+		text-align:left;
+		 width:100%;
+		 padding-left:0px;
+	}
+	.responsive-form  .input{
+		 width:96%;
+		 margin-left:0px;
+		 
+	}
+	
+	.responsive-form #aFotoProfil{
+		width:96%;
+	}
+}
+@media screen and (max-width: 320px) {
+	.responsive-form .label{
+		text-align:left;
+		 width:96%;
+		 padding-left:0px;
+	}
+	.responsive-form  .input{
+		 width:96%;
+		 margin-left:0px;
+	}
+	
+	.responsive-form #aFotoProfil{
+		width:9%;
+	}
+}
+
+
+    

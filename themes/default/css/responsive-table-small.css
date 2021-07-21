@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* CSS Document */
+
+.responsive-table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+/* Zebra striping */
+.responsive-table tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+.responsive-table th { 
+  background: #333; 
+  color: white; 
+  font-weight: bold; 
+}
+.responsive-table td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media only screen and (max-width: 320px),
+(min-device-width: 320px) and (max-device-width: 628px)  {
+
+	/* Force table to not be like tables anymore */
+	.responsive-table , .responsive-table thead, .responsive-table tbody, .responsive-table th, .responsive-table td, .responsive-table tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	.responsive-table  thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	.responsive-table  tr { border: 1px solid #ccc; }
+	
+	.responsive-table td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 30%; 
+	}
+	
+	.responsive-table td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 4px;
+		left: 6px;
+		width: 35%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	
+}
+
+
+
+
+/* Style 2 */
+
+.tabel th,
+.tabel td{
+  text-align: left;
+}
+.tabel.layout{
+  width: 100%;
+  border-collapse: collapse;
+}
+.tabel.display{
+  margin: 1em 0;
+}
+.tabel.display th,
+.tabel.display td{
+  border: 1px solid #B3BFAA;
+  padding: .5em 1em;
+}
+
+.tabel.display th{ background: #D5E0CC; }
+.tabel.display td{ background: #fff; }
+
+.tabel.responsive-table{
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+}

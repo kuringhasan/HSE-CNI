@@ -1,0 +1,80 @@
+<?php
+/**
+ * @package Auth
+ * @subpackage Web Driver
+ *
+ * @author Eka Rafi Dimasyono <rafee12@yahoo.com>
+*/
+
+defined("DCISTEM") OR die("No direct access allowed.");
+
+class Auth_Web_Driver {
+
+	public function check($Username, $Password, $login_as) {
+		global $dcistem;
+		$config = $dcistem->getOption("system/auth");
+  		$user   = new Core_User_Model();
+  		$user->getDataFrom_Username_Password($Username, md5(crypt($Password, $Password)));
+        
+        //echo $user->Username;
+	 //print_r($user);
+        //exit;
+		if(!is_object($user)) {
+			return false;
+		}
+		if(empty($user->Username)) {
+			return false;
+		}
+		$levels          = $user->LevelList;
+		$user->LevelList = array();
+		while($level = each($levels)) {
+			if(in_array($level[1]->LevelID, $config["allowed"])) {
+				$user->LevelList[] = $level[1];
+			}
+		}
+		if(count($user->LevelList)) {
+			return $user;
+		} else {
+			return false;
+		}
+	}
+
+	public function translateLevelList($translate = "field") {
+		if($translate == "table") {
+			return "DB_USERMANAGdev.dbo.tbaAppLevelList";
+		} else {
+			return array(
+				"AppLevelListLevelID"   => "LevelID",
+				"AppLevelListLevelName" => "LevelName",
+				"AppLevelListRefName"   => "RefName"
+			);
+		}
+	}
+
+	public function translateUserList($translate = "field") {
+		if($translate == "table") {
+			return "DB_USERMANAGdev.dbo.tbaAppUserList";
+		} else {
+			return array(
+				"AppUserListUsername"   => "Username",
+				"AppUserListPassword"   => "Password",
+				"AppUserListName"       => "Name",
+				"AppUserListEmail"      => "Email"
+			);
+		}
+	}
+
+	public function translateUserLevel($translate = "field") {
+		if($translate == "table") {
+			return "DB_USERMANAGdev.dbo.tbaAppUserLevel";
+		} else {
+			return array(
+				"AppUserLevelUsername" => "Username",
+				"AppUserLevelLevelID"  => "LevelID",
+				"AppUserLevelRefID"    => "RefID"
+			);
+		}
+	}
+
+}
+?>

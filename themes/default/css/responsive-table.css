@@ -1,0 +1,151 @@
+@charset "utf-8";
+/* CSS Document */
+
+.responsive-table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+/* Zebra striping */
+.responsive-table tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+.responsive-table th { 
+  background: #333; 
+  color: white; 
+  font-weight: bold; 
+}
+.responsive-table td, th { 
+  padding: 6px; 
+  border: 1px solid #999; 
+  text-align: left; 
+}
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	.responsive-table , .responsive-table thead, .responsive-table tbody, .responsive-table th, .responsive-table td, .responsive-table tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	.responsive-table  thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	.responsive-table  tr { border: 1px solid #999; }
+	
+	.responsive-table td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	.responsive-table td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	
+}
+
+
+
+
+/* Style 2 */
+
+.tabel th,
+.tabel td{
+  text-align: left;
+}
+.tabel.layout{
+  width: 100%;
+  border-collapse: collapse;
+}
+.tabel.display{
+  margin: 1em 0;
+}
+.tabel.display th,
+.tabel.display td{
+  border: 1px solid #B3BFAA;
+  padding: .5em 1em;
+}
+
+.tabel.display th{ background: #D5E0CC; }
+.tabel.display td{ background: #fff; }
+
+.tabel.responsive-table{
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 30em){
+    .tabel.responsive-table{
+      box-shadow: none;  
+    }
+    .tabel.responsive-table thead{
+      display: none; 
+    }
+  .tabel.display th,
+  .tabel.display td{
+    padding: .5em;
+  }
+    
+  .tabel.responsive-table td:nth-child(1):before{
+    content: 'No';
+  }
+  .tabel.responsive-table td:nth-child(2):before{
+    content: 'Ngaran Sakola';
+  }
+  .tabel.responsive-table td:nth-child(3):before{
+    content: 'Kota/Kabupaten';
+  }
+  .tabel.responsive-table td:nth-child(1),
+  .tabel.responsive-table td:nth-child(2),.tabel.responsive-table td:nth-child(3{
+    padding-left: 25%;
+  }
+  .tabel.responsive-table td:nth-child(1):before,
+  .tabel.responsive-table td:nth-child(2):before,.tabel.responsive-table td:nth-child(3):before{
+    position: absolute;
+    left: .5em;
+    font-weight: bold;
+  }
+  
+    .tabel.responsive-table tr,
+    .tabel.responsive-table td{
+        display: block;
+    }
+    .tabel.responsive-table tr{
+        position: relative;
+        margin-bottom: 1em;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+    }
+    .tabel.responsive-table td{
+        border-top: none;
+    }
+    .tabel.responsive-table td.organisationnumber{
+        background: #D5E0CC;
+        border-top: 1px solid #B3BFAA;
+    }
+    .tabel.responsive-table td.actions{
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: none;
+        background: none;
+    }
+}

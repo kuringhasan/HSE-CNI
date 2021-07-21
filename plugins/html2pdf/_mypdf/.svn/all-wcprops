@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/PACIS2012Teacher/!svn/ver/2/trunk/plugins/html2pdf/_mypdf
+END
+mypdf.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/PACIS2012Teacher/!svn/ver/2/trunk/plugins/html2pdf/_mypdf/mypdf.class.php
+END
+tcpdf_config_html2pdf.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/PACIS2012Teacher/!svn/ver/2/trunk/plugins/html2pdf/_mypdf/tcpdf_config_html2pdf.php
+END

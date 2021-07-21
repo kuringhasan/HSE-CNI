@@ -1,0 +1,83 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	font: 11px Tahoma;
+	color: #333333;
+	background: url(../images/bg2.png) top left #daefed repeat-x;
+}
+td, div {
+	font: 12px Tahoma;
+	color: #000000;
+}
+#header {
+	
+}
+#menu {
+	padding: 3px 50px;
+}
+#content_title {
+	color: #282b2d;
+    padding-top:10px;
+	padding-bottom: 10px;
+	margin: 0px 50px;
+	font: bold 20px Verdana;
+	text-shadow: 1px 1px 0px #9fa39b;
+}
+#content {
+	background: #eaeaea;
+	padding: 10px;
+	margin: 0px 50px;
+	-moz-border-radius: 3px;
+	border: 1px solid #cccccc;
+}
+#footer {
+    color: #333333;
+	padding : 10px 0px;
+	margin: 0px 50px;
+}
+#footer .copyright {
+    color: #333333;
+	 font : bold 11px Tahoma;
+}
+#footer a {
+	color : #333333;
+}
+.tbl_ {
+	border: 1px solid #777777;
+}
+.tbl_ .tbl_title td {
+	color: #ffffff;
+	background: #777777;
+	font: bold 12px Verdana;
+	padding: 5px;
+}
+.tbl_ .tbl_list td {
+	border-top: 1px solid #cccccc;
+}
+#tbl2  {
+	border:1px solid #C0C0C0;
+}
+#tbl2  *.header {
+	background-image: url('../images/fhbg.gif');
+    background-repeat: repeat-x;
+	padding: 4px 4px 4px 4px;
+	color: #000000;
+	font : bold 10px Tahoma; 
+    height: 23px;
+    cursor:pointer;
+    font-size:12px;
+}
+#tbl2  *.td1{
+	background: #DEDEDE;
+	font-size:12px;
+}
+#tbl2  *.td2{
+	background: #ddd5d5;
+	font-size:12px;
+}
+#tbl2 *.td {
+    padding: 4px 4px 4px 4px;
+}
+.input {
+    padding: 0.4em;
+}

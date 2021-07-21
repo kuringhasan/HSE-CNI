@@ -1,0 +1,53 @@
+
+/* CSS Document */
+.media-print{
+	padding:0 0 0 0;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:.8em;
+	
+}
+.media-print table tr td{
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:.8em;
+}
+.tbl-item{
+	border-collapse:collapse;
+	margin:5px 5px 5px 5px;
+	border:1px solid #000;
+}
+.tbl-item tr td{
+	padding:2px 3px 2px 3px;
+	border-right:1px solid #000;
+	border-top:1px solid #000;
+	
+}
+.grand-total tr td{
+	padding:2px 4px 2px 4px;
+}
+.media-print .tabel tr td{
+	vertical-align:top;
+}
+.pdf-footer{
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:11px;
+}
+.tbl-kosong{
+	border:1px solid #000;
+	border-collapse:collapse;
+}
+.tbl-kosong  tr td{
+	height:40px;
+	border-left:1px solid #000;
+	border-top:1px solid #000;
+	font-family:Verdana, Geneva, sans-serif;
+}
+.tbl-kosong  tr th{
+	border-left:1px solid #000;
+	font-family:Verdana, Geneva, sans-serif;
+}
+.kotak{
+	border:1px solid #000;
+	width:300px;
+}
+
+
