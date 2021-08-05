@@ -83,8 +83,8 @@ class Resume_Insiden_Controller extends Admin_Template_Controller {
 							kode_hari_kerja_hilang = $tpl->harihilang,
 							kode_biaya_perbaikan_unit = $tpl->perkiraanbiaya";
 			
-			$cols="id_pelaporan_insiden,kode_company,no_register,deskripsi,tanggal,kode_shift,kode_jam,kode_bulan,kode_hari,kode_area_kerja,kode_insiden,kode_cara_kerja,kode_tidak_standar,kode_faktor_pekerjaan,kode_faktor_personil,kode_tindakan_perbaikan,kode_hari_kerja_hilang,kode_biaya_perbaikan_unit,state";
-			$values="$id_pelaporan,$tpl->company,$tpl->noregister,'$tpl->keterangan','$tgll',$tpl->shiftkerja,$kodeJam,$kodeBulan,$kodeHari,$tpl->areakerja,$tpl->jenisinsiden,$tpl->carakerja,$tpl->kondisikerja,$tpl->faktorkerja,$tpl->faktorpribadi,$tpl->perbaikan,$tpl->harihilang,$tpl->perkiraanbiaya,'draft'";
+			$cols="kode_company,no_register,deskripsi,tanggal,kode_shift,kode_jam,kode_bulan,kode_hari,kode_area_kerja,kode_insiden,kode_cara_kerja,kode_tidak_standar,kode_faktor_pekerjaan,kode_faktor_personil,kode_tindakan_perbaikan,kode_hari_kerja_hilang,kode_biaya_perbaikan_unit,state";
+			$values="$tpl->company,$tpl->noregister,'$tpl->keterangan','$tgll',$tpl->shiftkerja,$kodeJam,$kodeBulan,$kodeHari,$tpl->areakerja,$tpl->jenisinsiden,$tpl->carakerja,$tpl->kondisikerja,$tpl->faktorkerja,$tpl->faktorpribadi,$tpl->perbaikan,$tpl->harihilang,$tpl->perkiraanbiaya,'draft'";
 
 			$idResume=$_POST['idResume'];
 			if(empty($idResume)){
@@ -92,6 +92,9 @@ class Resume_Insiden_Controller extends Admin_Template_Controller {
 				$sqlin="INSERT INTO resume_insiden ($cols) VALUES ($values);";
 				$rsl=$db->query($sqlin);
 				$resume_id = mysql_insert_id();
+
+				$sqlin="UPDATE data_insiden SET id_resume=$resume_id WHERE id_insiden=$id_pelaporan;";
+				$rsl=$db->query($sqlin);
 
 				for ($i=0; $i < count($tpl->nama_korban); $i++) { 					
 					$cols1 = "id_resume_insiden,nama_korban,nik,atasan_langsung,umur,kode_jabatan,kode_department,kode_masa_kerja,kode_bagian_luka";
@@ -106,9 +109,10 @@ class Resume_Insiden_Controller extends Admin_Template_Controller {
 					$sqlin2= "INSERT INTO alat_terlibat_insiden ($cols2) VALUES ($value2);";
 					$rsl2=$db->query($sqlin2);
 				}
+				
 				$msg['informasi'] =  "Data sudah disimpan!";
 				if(isset($rsl->error) and $rsl->error===true){
-					$msg['informasi'] =  "Terjadi Kesalahan!";
+					$msg['informasi'] =  "Terjadi Kesalahan";
 				} 
 			} else {
 				$msg['informasi'] =  "Data sudah diupdate!";
@@ -281,11 +285,10 @@ class Resume_Insiden_Controller extends Admin_Template_Controller {
 			$data= $db->select("resume_insiden.*","resume_insiden ")->where("resume_insiden.id_resume=$id")
 					->get(0);
 
-			// $data_pelaporan= $db->select("b.nama_kecelakaan as jeniskecelakaan, c.keterangan as keparahan ,datainsiden.tanggal_insiden as tglpelapor, datainsiden.nama_pelapor as pelapor , datainsiden.lokasi, datainsiden.jenis_kecelakaan, datainsiden.jumlah_korban, datainsiden.tingkat_keparahan, datainsiden.id_insiden, datainsiden.bantuan, datainsiden.namafile","data_insiden datainsiden
-			// left join ref_jenis_kecelakaan_kerja b on b.kode=datainsiden.jenis_kecelakaan
-			// left join ref_tingkat_keparahan c on c.kode=datainsiden.tingkat_keparahan
-			// ")->where("datainsiden.id_resume=$id")
-			// 		->get(0);
+			$data_pelaporan= $db->query("SELECT  b.nama_kecelakaan as jeniskecelakaan, c.keterangan as keparahan, datainsiden.tanggal_insiden as tglpelapor, datainsiden.nama_pelapor as pelapor , datainsiden.lokasi, datainsiden.jenis_kecelakaan, datainsiden.jumlah_korban, datainsiden.tingkat_keparahan, datainsiden.id_insiden, datainsiden.bantuan, datainsiden.namafile FROM  data_insiden datainsiden
+			 left join ref_jenis_kecelakaan_kerja b on b.kode=datainsiden.jenis_kecelakaan
+			 left join ref_tingkat_keparahan c on c.kode=datainsiden.tingkat_keparahan
+			 WHERE datainsiden.id_resume=$id");
 
 			$datakorban = $db->query("SELECT * FROM korban_insiden WHERE id_resume_insiden=$id");
 			$dataalat = $db->query("SELECT * FROM alat_terlibat_insiden WHERE id_resume_insiden=$id");
@@ -304,6 +307,18 @@ class Resume_Insiden_Controller extends Admin_Template_Controller {
 				$listdataalat[$j] = $dta;
 				$j++;
 			}
+			$j=0;
+			$datapelaporan      = array();
+			while($dta = $db->fetchObject($data_pelaporan))
+			{	
+				$datapelaporan[$j] = $dta;
+				$j++;
+			}
+
+
+			$tpl->data_pelaporan = $datapelaporan;
+			$tpl->id_resume = $id;
+			// $tpl->data_pelaporan = $data_pelaporan;
 			$tpl->datakorban = $listdatakorban;
 			$tpl->dataalat = $listdataalat;
 
@@ -348,6 +363,7 @@ class Resume_Insiden_Controller extends Admin_Template_Controller {
 			left join ref_jenis_kecelakaan_kerja b on b.kode=a.jenis_kecelakaan
 			left join ref_tingkat_keparahan c on c.kode=a.tingkat_keparahan")->where("a.id_insiden=$idd")
 					->get(0);
+			$tpl->id_insiden = $idd;
 			$tpl->tglpelapor= $data->tanggal_insiden;
 			$tpl->pelapor= $data->nama_pelapor;
 			$tpl->lokasi= $data->lokasi;
