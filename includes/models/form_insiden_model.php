@@ -37,6 +37,7 @@ class Form_Insiden_Model extends Model {
 				$rec->lokasi				= $data->lokasi;
 				$rec->jenis_kecelakaan		= $data->jenis_kecelakaan;
 				$rec->jumlah_korban			= $data->jumlah_korban;
+				$rec->area_kerja			= $data->area_kerja;
 				$rec->tingkat_keparahan		= $data->tingkat_keparahan;
 				$rec->bantuan				= $data->bantuan;
 				$rec->namafile				= $data->namafile;

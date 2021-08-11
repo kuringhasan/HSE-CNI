@@ -291,6 +291,7 @@ class Form_Insiden_Controller extends Admin_Template_Controller {
 			$lokasi	=trim($_POST['lokasi']);
 			$jenis_kecelakaan	=trim($_POST['jenis_kecelakaan']);
 			$jml_korban	=trim($_POST['jml_korban']);
+			$area_kerja	=trim($_POST['area_kerja']);
 			$tingkat_keparahan	=trim($_POST['tingkat_keparahan']);
 			$bantuan	=trim($_POST['bantuan']);
 			$filename="no-image.png";
@@ -329,12 +330,13 @@ class Form_Insiden_Controller extends Admin_Template_Controller {
 					$jenis_kecelakaan	=$master->scurevaluetable($jenis_kecelakaan,"number");
 					$tingkat_keparahan	=$master->scurevaluetable($tingkat_keparahan,"number");
 					$jml_korban	=$master->scurevaluetable($jml_korban,"number");
+					$area_kerja	=$master->scurevaluetable($area_kerja,"number");
 					$lokasi	=$master->scurevaluetable($lokasi);
 					$bantuan	=$master->scurevaluetable($bantuan);
 					
 					
-					$cols="tanggal_insiden,nama_pelapor,lokasi,jenis_kecelakaan,jumlah_korban,tingkat_keparahan,bantuan,created_by";
-					$values="'$waktu',$pelapor,$lokasi,$jenis_kecelakaan,$jml_korban,$tingkat_keparahan,$bantuan,'$Username'";
+					$cols="tanggal_insiden,nama_pelapor,lokasi,jenis_kecelakaan,jumlah_korban,area_kerja,tingkat_keparahan,bantuan,created_by";
+					$values="'$waktu',$pelapor,$lokasi,$jenis_kecelakaan,$jml_korban,$area_kerja,$tingkat_keparahan,$bantuan,'$Username'";
 					$sqlin="INSERT INTO data_insiden ($cols) VALUES ($values);";
 					
 		
@@ -385,6 +387,7 @@ class Form_Insiden_Controller extends Admin_Template_Controller {
 			$tpl->list_contractor =Model::getOptionList("partner","id","name","name ASC","ifnull(is_contractor,0)=1"); 
 			$tpl->list_tingkat_keparahan =Model::getOptionList("ref_tingkat_keparahan","kode","keterangan","kode ASC",""); 
 			$tpl->list_jenis_kecelakaan =Model::getOptionList("ref_jenis_kecelakaan_kerja","kode","nama_kecelakaan","kode ASC",""); 
+			$tpl->list_area_kerja =Model::getOptionList("ref_area_kerja", "kode","nama_area","kode ASC");  
 			$tpl->waktu=date('Y-m-d H:i:s');
 			$tpl->id            		= 0;
 			$tpl->nama_pelapor   		= $_SESSION["framework"]["current_user"]->Username;
@@ -419,6 +422,7 @@ class Form_Insiden_Controller extends Admin_Template_Controller {
 			$lokasi	=trim($_POST['lokasi']);
 			$jenis_kecelakaan	=trim($_POST['jenis_kecelakaan']);
 			$jml_korban	=trim($_POST['jml_korban']);
+			$area_kerja	=trim($_POST['area_kerja']);
 			$tingkat_keparahan	=trim($_POST['tingkat_keparahan']);
 			$bantuan	=trim($_POST['bantuan']);
 			
@@ -470,6 +474,7 @@ class Form_Insiden_Controller extends Admin_Template_Controller {
 					$jenis_kecelakaan	=$master->scurevaluetable($jenis_kecelakaan,"number");
 					$tingkat_keparahan	=$master->scurevaluetable($tingkat_keparahan,"number");
 					$jml_korban	=$master->scurevaluetable($jml_korban,"number");
+					$area_kerja	=$master->scurevaluetable($area_kerja,"number");
 					$lokasi	=$master->scurevaluetable($lokasi);
 					$bantuan	=$master->scurevaluetable($bantuan);
 					$Username=$_SESSION["framework"]["current_user"]->Username ;
@@ -477,7 +482,7 @@ class Form_Insiden_Controller extends Admin_Template_Controller {
 					//kode_company=$kontraktor,
 					$cols="tanggal_insiden='$waktu',nama_pelapor=$pelapor,".
 							"lokasi=$lokasi,jenis_kecelakaan=$jenis_kecelakaan,".
-							"jumlah_korban=$jml_korban,tingkat_keparahan=$tingkat_keparahan,".
+							"jumlah_korban=$jml_korban,area_kerja=$area_kerja,tingkat_keparahan=$tingkat_keparahan,".
 							"bantuan=$bantuan,updated='$skrg',updated_by='$Username'".$updafieldFile;
 					$sqlin="update data_insiden set $cols where id_insiden= $id;";
 					
@@ -549,6 +554,7 @@ class Form_Insiden_Controller extends Admin_Template_Controller {
 			$tpl->lokasi				= $detail->lokasi;
 			$tpl->jenis_kecelakaan		= $detail->jenis_kecelakaan;
 			$tpl->jumlah_korban			= $detail->jumlah_korban;
+			$tpl->area_kerja			= $detail->area_kerja;
 			$tpl->tingkat_keparahan		= $detail->tingkat_keparahan;
 			$tpl->bantuan				= $detail->bantuan;
 			$tpl->typeform              = "edit";

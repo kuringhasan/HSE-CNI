@@ -91,10 +91,25 @@ function errorForm(msj_obj){
         </select>
     </div> 
     <div class="row-form">
-        <span class="label">Jumlah Korban<br>(bila ada)</span>
-        <input type="number" class="input" name="jml_korban" id="jml_korban" placeholder="Jumlah Korban"  size="35" value="<?php echo $jumlah_korban;?>"/>
-    </div>
+        <span class="label" >Area Kerja</span>
+        <select name="area_kerja" data-column="1" class="input" id="jenis_kecelakaan" >
+                  <?php
+                echo '<option value="0">-- Area Kerja --</option>';
+                $List=$list_area_kerja;
+                while($data = each($List)) {
+                    ?>
+              <option value="<?php echo $data['key'];?>" <?php echo $data['key']==$area_kerja?"selected":""; ?>><?php echo $data['value'];?></option>
+              <?php
+              
+                }
+              ?>
+        </select>
+    </div> 
     <div class="row-form">
+        <span class="label">Jumlah Korban<br>(bila ada)</span>
+        <input type="number" onchange="input_korban(this.value)" onkeyup="input_korban(this.value)" class="input" name="jml_korban" id="jml_korban" placeholder="Jumlah Korban"  size="35" value="<?php echo $jumlah_korban;?>"/>
+    </div>
+    <div id="keparahan" class="row-form"  style="display: <?php if($jumlah_korban>0){echo 'block';}else{echo'none';} ?>;">
         <span class="label" >Tingkat Keparahan<br>(bila ada)</span>
         <select name="tingkat_keparahan" data-column="1" class="input" id="tingkat_keparahan" >
                   <?php
@@ -109,7 +124,7 @@ function errorForm(msj_obj){
               ?>
         </select>
     </div>
-    <div class="row-form">
+    <div id="bantuan" class="row-form"  style="display: <?php if($jumlah_korban>0){echo 'block';}else{echo'none';} ?>;">
         <span class="label">Bantuan yang <br>Diperlukan</span>
         <textarea name="bantuan" rows="4" cols="40"><?php echo $bantuan;?></textarea>
     </div>
@@ -170,6 +185,17 @@ if($typeform == "edit"){
 <script type="text/javascript" src="<?php echo $theme_path;?>bootstrap/plugins/datetimepicker/js/locales/bootstrap-datetimepicker.id.js" charset="UTF-8"></script>
   
 <script>
+
+function input_korban(jml){
+    if(jml>0){
+        document.getElementById("keparahan").style.display = 'block';
+        document.getElementById("bantuan").style.display = 'block';
+        
+    }else{
+        document.getElementById("keparahan").style.display = 'none';
+        document.getElementById("bantuan").style.display = 'none';
+    }
+}
 
 var $j = jQuery.noConflict();
 $j(document).ready(function() {
